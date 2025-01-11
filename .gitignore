@@ -4,9 +4,6 @@ agent_scrape_env/
 # Ignore all files inside the data folder
 data/*
 
-
-
-
 # Ignore Python bytecode files
 __pycache__/
 *.py[cod]
