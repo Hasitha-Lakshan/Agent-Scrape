@@ -44,7 +44,7 @@
 
 4. **Set AgentQL API Key:**:
     ```bash
-   $env:AGENTQL_API_KEY = "your_api_key_here"
+   $env:AGENTQL_API_KEY = "enter_your_angentql_api_key_here"
 
 
 ## Usage
