@@ -23,12 +23,16 @@
    git clone https://github.com/your-username/agent-scrape.git
    cd agent-scrape
 
-2. **Create a virtual environment** (if you haven't already):
+2. **Set AgentQL API Key:**:
+    ```bash
+   $env:AGENTQL_API_KEY = "enter_your_angentql_api_key_here"
+
+3. **Create a virtual environment** (if you haven't already):
 
    ```bash
    python -m venv agent_scrape_env
 
-3. **Activate the virtual environment**:
+4. **Activate the virtual environment**:
 
    - On Windows:
       ```bash
@@ -38,13 +42,9 @@
       ```bash
       source agent_scrape_env/bin/activate
 
-4. **Install the dependencies:**:
+5. **Install the dependencies:**:
     ```bash
    pip install -r requirements.txt
-
-4. **Set AgentQL API Key:**:
-    ```bash
-   $env:AGENTQL_API_KEY = "enter_your_angentql_api_key_here"
 
 
 ## Usage
