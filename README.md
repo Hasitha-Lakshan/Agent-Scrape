@@ -42,6 +42,10 @@
     ```bash
    pip install -r requirements.txt
 
+4. **Set AgentQL API Key:**:
+    ```bash
+   $env:AGENTQL_API_KEY = "your_api_key_here"
+
 
 ## Usage
 
