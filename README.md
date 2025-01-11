@@ -34,7 +34,7 @@
       ```bash
       .\agent_scrape_env\Scripts\activate
 
-  - On macOS/Linux:
+   - On macOS/Linux:
       ```bash
       source agent_scrape_env/bin/activate
 
