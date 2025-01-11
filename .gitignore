@@ -1,6 +1,9 @@
 # Ignore virtual environment folder
 agent_scrape_env/
 
+# Ignore data folder
+data/
+
 # Ignore Python bytecode files
 __pycache__/
 *.py[cod]
