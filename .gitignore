@@ -1,0 +1,30 @@
+# Ignore virtual environment folder
+agent_scrape_env/
+
+# Ignore Python bytecode files
+__pycache__/
+*.py[cod]
+
+# Ignore environment configuration files
+.env
+
+# Ignore distribution and packaging folders
+*.egg
+*.egg-info
+dist/
+build/
+*.bak
+
+# Ignore IDE or editor-specific files (you can uncomment these if you're using specific tools)
+# .vscode/
+# .idea/
+
+# Ignore log files
+*.log
+
+# Ignore system-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore Jupyter notebook checkpoints
+.ipynb_checkpoints/

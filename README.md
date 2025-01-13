@@ -1,24 +1,75 @@
-# AgentScrape
+# Agent Scrape
 
-**AgentScrape** is a Python-based web scraping tool that leverages the power of **AgentQL** for querying and extracting valuable data from websites. It simplifies the process of collecting structured information and can be extended to support various scraping tasks across different websites.
+**Agent Scrape** is a Python-based web scraping project that utilizes libraries like `requests`, `beautifulsoup4`, and `agentql` to scrape data from websites. This project serves as an example of web scraping with custom user-agent headers and data extraction techniques.
 
 ## Features
-- Efficient web scraping using **requests** and **BeautifulSoup**
-- Integrates with **AgentQL** for data storage and querying
-- Easy-to-use interface for customizing scraping logic
-- Flexible configuration for handling different web page structures
-- Supports exporting scraped data to CSV/JSON formats
 
-## Prerequisites
+- Scrapes web pages using custom user-agent headers.
+- Extracts specific data from HTML content using `BeautifulSoup`.
+- Easily extendable to scrape multiple websites or different types of data.
 
-Before running the project, ensure you have the following installed:
-- Python 3.7+
-- Git (for version control)
-- GitHub (if you plan to work with GitHub repositories)
+## Requirements
+
+- Python 3.x
+- `requests`
+- `beautifulsoup4`
+- `agentql`
 
 ## Installation
 
-1. Clone this repository to your local machine:
+1. **Clone this repository**:
 
    ```bash
-   git clone git@github.com:Hasitha-Lakshan/Agent-Scrape.git
+   git clone https://github.com/your-username/agent-scrape.git
+   cd agent-scrape
+
+2. **Set AgentQL API Key:**:
+    ```bash
+   $env:AGENTQL_API_KEY = "enter_your_angentql_api_key_here"
+
+3. **Create a virtual environment** (if you haven't already):
+
+   ```bash
+   python -m venv agent_scrape_env
+
+4. **Activate the virtual environment**:
+
+   - On Windows:
+      ```bash
+      .\agent_scrape_env\Scripts\activate
+
+   - On macOS/Linux:
+      ```bash
+      source agent_scrape_env/bin/activate
+
+5. **Install the dependencies:**:
+    ```bash
+   pip install -r requirements.txt
+
+
+## Usage
+
+1. Write your scraping logic in scraper.py
+
+2. Run your scraping script:
+
+   ```bash
+   python scraper.py
+
+## Contributing
+
+1. Fork the repository.
+2. Create your feature branch (`git checkout -b feature/your-feature`).
+3. Commit your changes (`git commit -am 'Add your feature'`).
+4. Push to the branch (`git push origin feature/your-feature`).
+5. Create a new pull request.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- `requests`: HTTP library for Python.
+- `beautifulsoup4`: HTML and XML parsing library.
+- `agentql`: A user-agent header customizer for HTTP requests.
