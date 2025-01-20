@@ -28,3 +28,8 @@ Thumbs.db
 
 # Ignore Jupyter notebook checkpoints
 .ipynb_checkpoints/
+
+
+# Ignore .xlsx and .text files in the data/
+data/*.xlsx
+data/*.text
