@@ -4,7 +4,7 @@ from playwright.async_api import async_playwright
 import pandas as pd
 
 DATA_SOURCE_URL = "https://www.smida.gov.ua/db/emitent"
-Register_Code = "35591059"
+Company_Name = "АКЦІОНЕРНЕ ТОВАРИСТВО \"КОМЕРЦІЙНИЙ БАНК \"ГЛОБУС\""
 
 # Query to search the items
 DATABASE_PAGE_QUERY = """
@@ -52,7 +52,7 @@ async def fetch_data(session_url):
 
         # Interact with search input and serach button
         database_page_query_response = await page.query_elements(DATABASE_PAGE_QUERY)
-        await database_page_query_response.search_input.fill(Register_Code)
+        await database_page_query_response.search_input.fill(Company_Name)
         await database_page_query_response.search_button.click()
 
         # Wait for search results to load and select the first result
@@ -76,7 +76,7 @@ async def main():
 
     # Save the data to an excel file
     df = pd.DataFrame([company_data])
-    output_file_path = f"./data/Ukraine_{Register_Code}.xlsx"
+    output_file_path = f"./data/Ukraine_{'smida'}.xlsx"
     df.to_excel(output_file_path, index=False)
 
     print(f"Company details saved to {output_file_path}")   
