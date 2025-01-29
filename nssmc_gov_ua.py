@@ -3,11 +3,69 @@ import agentql
 from playwright.async_api import async_playwright
 import pandas as pd
 
+
+
+
+# Fetch data for Non-State Pension Fund
+async def fetch_data_for_paicm(session_url):
+    async with async_playwright() as p:
+        # Launch the browser, session and a new page
+        browser = await p.chromium.launch(headless=False)
+        context = await browser.new_context()
+        page = await context.new_page()
+        
+        # Wrap the page with AgentQL's querying API and navigate to the URL
+        page = agentql.wrap(page)
+        await page.goto(session_url)
+
+        # Interact with search input and serach button
+        search_page_query_response = await page.query_elements(SEARCH_PAGE_QUERY)
+        await search_page_query_response.search_input.fill(NSPF_REGISTOR_CODE_OR_COMPANY_NAME)
+        await search_page_query_response.search_button.click()
+
+        # Wait for search results to load and select the first result
+        first_result_response = await page.query_elements(FIRST_RESULT_QUERY)
+        # await first_result_response.first_result.click()
+
+        # Fetch the company data from the page
+        data = await page.query_data(COMPANY_INFO_QUERY)
+
+        # Close the browser
+        await browser.close()  
+        return data["Company_details"]
+
+
+
+
+
+
+
+
+
+def generateInputs(companyMainCategory):
+    match companyMainCategory:
+            # Company main categories
+            case "nspf":
+                return { "dataSourceUrl": "https://www.nssmc.gov.ua/reiestr-nederzhavnykh-pensiinykh-fondiv/"}
+            case "paicm":
+                return await fetch_data_for_paicm(NSPF_DATA_SOURCE_URL)
+      
+
+
+
+
+
+
+
+
+
 # Non-State Pension Funds Registry
 NSPF_DATA_SOURCE_URL = "https://www.nssmc.gov.ua/reiestr-nederzhavnykh-pensiinykh-fondiv/"
 NSPF_REGISTOR_CODE_OR_COMPANY_NAME = "Чорноморський резерв"
 
 # Professional activity in capital markets
+PAICM_DATA_SOURCE_URL = "https://www.nssmc.gov.ua/profesiina-diialnist-na-rynkakh-kapitalu/#tab-"
+PAICM_TAB = 3
 # Investment firms
 # ПУБЛІЧНЕ АКЦІОНЕРНЕ ТОВАРИСТВО "КОМЕРЦІЙНИЙ БАНК "НАДРА"
 
@@ -68,33 +126,7 @@ async def fetch_data_for_nspf(session_url):
         return data["Company_details"]
     
 
-# Fetch data for Non-State Pension Fund
-async def fetch_data_for_nspf(session_url):
-    async with async_playwright() as p:
-        # Launch the browser, session and a new page
-        browser = await p.chromium.launch(headless=False)
-        context = await browser.new_context()
-        page = await context.new_page()
-        
-        # Wrap the page with AgentQL's querying API and navigate to the URL
-        page = agentql.wrap(page)
-        await page.goto(session_url)
 
-        # Interact with search input and serach button
-        search_page_query_response = await page.query_elements(SEARCH_PAGE_QUERY)
-        await search_page_query_response.search_input.fill(NSPF_REGISTOR_CODE_OR_COMPANY_NAME)
-        await search_page_query_response.search_button.click()
-
-        # Wait for search results to load and select the first result
-        first_result_response = await page.query_elements(FIRST_RESULT_QUERY)
-        # await first_result_response.first_result.click()
-
-        # Fetch the company data from the page
-        data = await page.query_data(COMPANY_INFO_QUERY)
-
-        # Close the browser
-        await browser.close()  
-        return data["Company_details"]
 
 
 async def main():
@@ -104,15 +136,16 @@ async def main():
             # Non-State Pension Fund
             case "nspf":
                 return await fetch_data_for_nspf(NSPF_DATA_SOURCE_URL)
-            case "nspf":
-                return await fetch_data_for_nspf(NSPF_DATA_SOURCE_URL)
+            case "paicm":
+                return await fetch_data_for_paicm(NSPF_DATA_SOURCE_URL)
             case "nspf":
                 return await fetch_data_for_nspf(NSPF_DATA_SOURCE_URL)
             case "nspf":
                 return await fetch_data_for_nspf(NSPF_DATA_SOURCE_URL)
 
     # company type
-    company_type = "nspf"   
+    company_type = "paicm"
+
     company_data = get_data(company_type)
       
     # Print each item in the company data
